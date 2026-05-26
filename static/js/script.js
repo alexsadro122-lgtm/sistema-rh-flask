@@ -1,57 +1,44 @@
-// Campo de pesquisa
-const pesquisa = document.querySelector("#pesquisa");
+document.addEventListener("DOMContentLoaded", () => {
 
-// Verifica se o input existe
-if (pesquisa) {
+    // Campo de pesquisa
+    const pesquisa =
+    document.querySelector("#pesquisa");
 
-    pesquisa.addEventListener("keyup", () => {
+    // Cards dos funcionários
+    const funcionarios =
+    document.querySelectorAll(".funcionario-card");
 
-        // Texto digitado
-        const texto = pesquisa.value.toLowerCase();
+    // Verifica se existe
+    if (pesquisa) {
 
-        // Seleciona todos os cards
-        const funcionarios = document.querySelectorAll(".funcionario-card");
+        pesquisa.addEventListener("keyup", () => {
 
-        // Percorre todos os cards
-        funcionarios.forEach((card) => {
+            // Texto digitado
+            const texto =
+            pesquisa.value.toLowerCase();
 
-            // Texto completo do card
-            const nome = card.textContent.toLowerCase();
+            // Percorre os cards
+            funcionarios.forEach((card) => {
 
-            // Verifica se encontrou o texto
-            if (nome.includes(texto)) {
+                // Conteúdo do card
+                const conteudo =
+                card.textContent.toLowerCase();
 
-                card.style.display = "block";
+                // Verifica se encontrou
+                if (conteudo.includes(texto)) {
 
-            } else {
+                    card.style.display = "block";
 
-                card.style.display = "none";
+                } else {
 
-            }
+                    card.style.display = "none";
+
+                }
+
+            });
 
         });
 
-    });
-
-}
-
-
-// Remove popup automaticamente
-setTimeout(() => {
-
-    const popup = document.querySelector(".popup");
-
-    if (popup) {
-        popup.style.display = "none";
     }
 
-}, 3000);
-
-function confirmarExclusao() {
-
-    return confirm(
-        "deseja realmente excluir este funcionário?"
-
-    );
-
-}
+});
