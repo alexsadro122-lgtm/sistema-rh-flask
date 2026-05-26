@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Funcionário</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Editar Funcionário</h1>
+
+    <form action="/atualizar/{{ funcionario[0] }}" method="post">
+
+        <input
+            type="text"
+            name="nome"
+            value="{{ funcionario[1] }}"
+            required
+        >
+
+        <input
+            type="email"
+            name="email"
+            value="{{ funcionario[2] }}"
+            required
+        >
+
+        <input
+            type="text"
+            name="cargo"
+            value="{{ funcionario[3] }}"
+            required
+        >
+
+        <button type="submit">
+            Salvar Alterações
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

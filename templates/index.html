@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de Cadastro</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navbar do sistema -->
+    <nav class="navbar">
+       <h2> Sistema RH</h2>
+    </nav>
+
+    <div class="container">
+        
+        <div class="form-container">
+        <!-- Navbar do sistema -->
+        <h1>Cadastro de funcionarios</h1>
+
+
+        <!--dashboard-->
+        <div class="container">
+
+    <div class="form-container">
+
+        <h1>Cadastro de funcionarios</h1>
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+
+            <div class="dashboard-card">
+                <h3>Total de cargos</h3>
+                <p>{{ total_cargos }}</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Último Cadastro</h3>
+                <p>{{ ultimo_funcionario }}</p>
+            </div>
+
+        </div>
+
+        <!-- Formulário -->
+        <form action="/cadastrar" method="post">
+
+            <input
+                type="text"
+                name="nome"
+                placeholder="Nome Completo"
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email"
+            >
+
+            <input
+                type="text"
+                name="cargo"
+                placeholder="Cargo"
+            >
+
+            <button type="submit">
+                Cadastrar
+            </button>
+
+        </form>
+
+        <!-- Pesquisa -->
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="Pesquisar funcionário..."
+        >
+
+    </div>
+
+    <h2>Total de funcionários: {{ funcionarios|length }}</h2>
+
+    <!-- Grid -->
+    <div class="funcionarios-grid">
+
+        {% for funcionario in funcionarios %}
+
+        <div class="card">
+
+            <h3>
+                Nome: {{ funcionario[1] }}
+            </h3>
+
+            <p>
+                Email: {{ funcionario[2] }}
+            </p>
+
+            <p>
+                Cargo: {{ funcionario[3] }}
+            </p>
+
+            <a
+                href="/editar/{{ funcionario[0] }}"
+                class="edit-btn"
+            >
+                Editar
+            </a>
+
+            <form
+                action="/deletar/{{ funcionario[0] }}"
+                method="post"
+            >
+
+                <button class="delete-btn">
+                    Excluir
+                </button>
+
+            </form>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>    
+
+    <script src="{{ url_for('static', filename='js/script.js' ) }}"></script>
+</body>
+
+
+</html>
